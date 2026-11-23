@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 
 const app = express();
@@ -19,6 +21,12 @@ app.get("/tasks", (req, res) => {
     ]);
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Start server only when running this file directly
+if (require.main === module) {
+    app.listen(PORT, "0.0.0.0", () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
+
+// Export Express app for testing
+module.exports = app;
